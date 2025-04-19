@@ -1,0 +1,1243 @@
+<html lang="he" dir="rtl"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שיטות מעבדה בביוטכנולוגיה - פרויקט פוטוליאזות</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: #f0f7ff;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .quiz-container {
+            display: none;
+            max-height: 2000px;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        
+        .quiz-container.active {
+            max-height: 2000px;
+            display: block;
+            transition: max-height 1s ease-in;
+        }
+        
+        .method-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+        }
+        
+        .protocol-step {
+            counter-increment: step-counter;
+        }
+        
+        .protocol-step:before {
+            content: counter(step-counter);
+            background-color: #3b82f6;
+            color: white;
+            font-weight: bold;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50%;
+            margin-left: 0.75rem;
+            display: inline-block;
+        }
+        input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    accent-color: #2563eb; /* כחול טיפה כהה */
+    cursor: pointer;
+}
+
+label.flex {
+    font-size: 1.1rem; /* טקסט מעט מוגדל */
+    line-height: 1.6;
+    gap: 0.5rem;
+}
+
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.sticky{position:sticky}.top-0{top:0px}.z-10{z-index:10}.mx-auto{margin-left:auto;margin-right:auto}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-2{margin-left:0.5rem}.ml-3{margin-left:0.75rem}.mr-6{margin-right:1.5rem}.mr-8{margin-right:2rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-6{height:1.5rem}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-6{width:1.5rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.list-decimal{list-style-type:decimal}.list-disc{list-style-type:disc}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.overflow-x-auto{overflow-x:auto}.rounded{border-radius:0.25rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.border{border-width:1px}.border-b-2{border-bottom-width:2px}.border-r-4{border-right-width:4px}.border-blue-100{--tw-border-opacity:1;border-color:rgb(219 234 254 / var(--tw-border-opacity, 1))}.border-blue-200{--tw-border-opacity:1;border-color:rgb(191 219 254 / var(--tw-border-opacity, 1))}.border-blue-500{--tw-border-opacity:1;border-color:rgb(59 130 246 / var(--tw-border-opacity, 1))}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-transparent{border-color:transparent}.bg-blue-100{--tw-bg-opacity:1;background-color:rgb(219 234 254 / var(--tw-bg-opacity, 1))}.bg-blue-200{--tw-bg-opacity:1;background-color:rgb(191 219 254 / var(--tw-bg-opacity, 1))}.bg-blue-50{--tw-bg-opacity:1;background-color:rgb(239 246 255 / var(--tw-bg-opacity, 1))}.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235 / var(--tw-bg-opacity, 1))}.bg-gray-50{--tw-bg-opacity:1;background-color:rgb(249 250 251 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-gradient-to-b{background-image:linear-gradient(to bottom, var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.from-blue-100{--tw-gradient-from:#dbeafe var(--tw-gradient-from-position);--tw-gradient-to:rgb(219 234 254 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-blue-50{--tw-gradient-from:#eff6ff var(--tw-gradient-from-position);--tw-gradient-to:rgb(239 246 255 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-blue-600{--tw-gradient-from:#2563eb var(--tw-gradient-from-position);--tw-gradient-to:rgb(37 99 235 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-blue-50{--tw-gradient-to:#eff6ff var(--tw-gradient-to-position)}.to-indigo-700{--tw-gradient-to:#4338ca var(--tw-gradient-to-position)}.to-white{--tw-gradient-to:#fff var(--tw-gradient-to-position)}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-4{padding-left:1rem;padding-right:1rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-8{padding-top:2rem;padding-bottom:2rem}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-blue-700{--tw-text-opacity:1;color:rgb(29 78 216 / var(--tw-text-opacity, 1))}.text-blue-800{--tw-text-opacity:1;color:rgb(30 64 175 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.opacity-90{opacity:0.9}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-shadow{transition-property:box-shadow;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.hover\:bg-blue-50:hover{--tw-bg-opacity:1;background-color:rgb(239 246 255 / var(--tw-bg-opacity, 1))}.hover\:bg-blue-700:hover{--tw-bg-opacity:1;background-color:rgb(29 78 216 / var(--tw-bg-opacity, 1))}.hover\:shadow-md:hover{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}@media (min-width: 768px){.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}.md\:text-base{font-size:1rem;line-height:1.5rem}}@media (min-width: 1024px){.lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}}</style></head>
+<body class="min-h-screen">
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-8 px-4 shadow-lg">
+        <div class="container mx-auto">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">פרויקט ישומים בביוטכנולוגיה - המרכז הטכנולוגי אשדוד</h1>
+            <p class="text-xl opacity-90">פרויקט חקר: פוטוליאזות ככלי ביוטכנולוגי לתיקון DNA</p>
+            <p class="text-l opacity-60">פותח ע"י: ענת ברון לוביש</p>
+        </div>
+    </header>
+    
+    <nav class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto">
+            <ul class="flex flex-wrap text-sm md:text-base overflow-x-auto" id="tabs">
+                <li class="tab-item">
+                    <button class="px-4 py-3 font-medium hover:bg-blue-50 transition-colors border-b-2 text-blue-600 border-blue-600" data-tab="project">פרויקט המחקר</button>
+                </li>
+                <li class="tab-item">
+                    <button class="px-4 py-3 font-medium hover:bg-blue-50 transition-colors border-b-2 border-transparent" data-tab="overview">סקירה כללית</button>
+                </li>
+                <li class="tab-item">
+                    <button class="px-4 py-3 font-medium hover:bg-blue-50 transition-colors border-b-2 border-transparent" data-tab="trypan-blue">צביעת תאים עם טריפן בלו</button>
+                </li>
+                <li class="tab-item">
+                    <button class="px-4 py-3 font-medium hover:bg-blue-50 transition-colors border-b-2 border-transparent" data-tab="nanodrop">קביעת ריכוז DNA בננודרופ</button>
+                </li>
+                <li class="tab-item">
+                    <button class="px-4 py-3 font-medium hover:bg-blue-50 transition-colors border-b-2 border-transparent" data-tab="dot-blot">דוט בלוט</button>
+                </li>
+                <li class="tab-item">
+                    <button class="px-4 py-3 font-medium hover:bg-blue-50 transition-colors border-b-2 border-transparent" data-tab="pcr">PCR</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="container mx-auto py-8 px-4">
+        <!-- פרויקט המחקר -->
+        <section id="project" class="tab-content active bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-blue-800 mb-4">פרויקט המחקר: פוטוליאזות ככלי ביוטכנולוגי</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-700 mb-3">רקע</h3>
+                    <p class="mb-4">בפרויקט זה אנו חוקרים את התועלת הפוטנציאלית של פוטוליאזות, אנזימים שאינם מתבטאים באופן טבעי בבני אדם, ככלי ביוטכנולוגי לתיקון DNA ממוקד.</p>
+                    
+                    <h3 class="text-xl font-semibold text-blue-700 mb-3">מטרת המחקר</h3>
+                    <p class="mb-4">מטרת הניסוי היא לחקור את יכולתם של פוטוליאזות לתקן באופן ספציפי נזקי DNA המושרים על ידי קרינת UV בחשיפה לאור כחול.</p>
+                    
+                    <h3 class="text-xl font-semibold text-blue-700 mb-3">שיטת המחקר</h3>
+                    <p class="mb-4">אנו מקרינים תאים מסוג RO12XP בקרינת UV. לתאים אלה ישנה מוטציה באחד מהחלבונים במנגנון ה-NER (Nucleotide Excision Repair), כך שאין להם אפשרות לתקן את הנזק דרך מנגנון זה. עם זאת, הם מכילים גן לפוטוליאז אשר יכול לתקן את הנזק שנוצר בתהליך פוטואנזימתי.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-700 mb-3">חשיבות המחקר</h3>
+                    <p class="mb-4">חקירה זו לא רק שופכת אור על ההיתכנות של שימוש בפוטוליאזים לתיקון DNA ממוקד, אלא גם מספקת תובנות לגבי יעילותם בהפחתת המוטגנזה הנגרמת על ידי UV.</p>
+                    
+                    <h3 class="text-xl font-semibold text-blue-700 mb-3">יישומים עתידיים</h3>
+                    <p class="mb-4">מינוף המאפיינים של פוטוליאזות ככלי ביוטכנולוגי מבטיח יישומים בתיקון DNA ובמניפולציה גנטית, עם פוטנציאל לפיתוח טיפולים חדשניים למחלות הקשורות בנזקי DNA.</p>
+                    
+                    <div class="bg-blue-50 border-r-4 border-blue-500 p-4 mt-4">
+                        <h4 class="font-semibold text-blue-800">שיטות המעבדה בפרויקט</h4>
+                        <p>במהלך המחקר אנו משתמשים במספר שיטות מעבדה מתקדמות:</p>
+                        <ul class="list-disc mr-6 mt-2 space-y-1">
+                            <li>צביעת תאים עם טריפן בלו וספירתם בהמוציטומטר - לקביעת חיות התאים</li>
+                            <li>קביעת ריכוז DNA באמצעות ננודרופ - למדידת כמות ה-DNA בדגימות</li>
+                            <li>דוט בלוט - לזיהוי נזקי DNA ספציפיים</li>
+                            <li>PCR - להגברת רצפי DNA ספציפיים לצורך אנליזה</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8">
+                <svg class="w-full max-w-2xl mx-auto" viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg">
+                    <!-- תרשים זרימה של הפרויקט -->
+                    <rect x="50" y="20" width="760" height="260" rx="10" fill="#f0f7ff" stroke="#3b82f6" stroke-width="2"></rect>
+                    
+                    <!-- שלב 1: הכנת תאים -->
+                    <rect x="100" y="60" width="120" height="60" rx="5" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"></rect>
+                    <text x="160" y="90" text-anchor="middle" font-size="14" font-weight="bold">הכנת תאים</text>
+                    <text x="160" y="110" text-anchor="middle" font-size="12">RO12XP</text>
+                    
+                    <!-- שלב 2: הקרנה ב-UV -->
+                    <rect x="280" y="60" width="120" height="60" rx="5" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"></rect>
+                    <text x="340" y="90" text-anchor="middle" font-size="14" font-weight="bold">הקרנה ב-UV</text>
+                    <text x="340" y="110" text-anchor="middle" font-size="12">יצירת נזקי DNA</text>
+                    
+                    <!-- שלב 3: חשיפה לאור כחול -->
+                    <rect x="460" y="60" width="120" height="60" rx="5" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"></rect>
+                    <text x="520" y="90" text-anchor="middle" font-size="14" font-weight="bold">חשיפה לאור כחול</text>
+                    <text x="520" y="110" text-anchor="middle" font-size="12">הפעלת פוטוליאז</text>
+                    
+                    <!-- שלב 4: אנליזה -->
+                    <rect x="640" y="60" width="120" height="60" rx="5" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"></rect>
+                    <text x="700" y="90" text-anchor="middle" font-size="14" font-weight="bold">אנליזה</text>
+                    <text x="700" y="110" text-anchor="middle" font-size="12">בדיקת תיקון DNA</text>
+                    
+                    <!-- שיטות מעבדה -->
+                    <rect x="100" y="180" width="120" height="60" rx="5" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"></rect>
+                    <text x="160" y="210" text-anchor="middle" font-size="14">טריפן בלו</text>
+                    <text x="160" y="230" text-anchor="middle" font-size="12">חיות תאים</text>
+                    
+                    <rect x="280" y="180" width="120" height="60" rx="5" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"></rect>
+                    <text x="340" y="210" text-anchor="middle" font-size="14">ננודרופ</text>
+                    <text x="340" y="230" text-anchor="middle" font-size="12">ריכוז DNA</text>
+                    
+                    <rect x="460" y="180" width="120" height="60" rx="5" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"></rect>
+                    <text x="520" y="210" text-anchor="middle" font-size="14">דוט בלוט</text>
+                    <text x="520" y="230" text-anchor="middle" font-size="12">זיהוי נזקי DNA</text>
+                    
+                    <rect x="640" y="180" width="120" height="60" rx="5" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"></rect>
+                    <text x="700" y="210" text-anchor="middle" font-size="14">PCR</text>
+                    <text x="700" y="230" text-anchor="middle" font-size="12">הגברת רצפי DNA</text>
+                    
+                    <!-- חיצים -->
+                    <line x1="220" y1="90" x2="280" y2="90" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowhead)"></line>
+                    <line x1="400" y1="90" x2="460" y2="90" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowhead)"></line>
+                    <line x1="580" y1="90" x2="640" y2="90" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowhead)"></line>
+                    
+                    <line x1="160" y1="120" x2="160" y2="180" stroke="#60a5fa" stroke-width="2" stroke-dasharray="5,5"></line>
+                    <line x1="340" y1="120" x2="340" y2="180" stroke="#60a5fa" stroke-width="2" stroke-dasharray="5,5"></line>
+                    <line x1="520" y1="120" x2="520" y2="180" stroke="#60a5fa" stroke-width="2" stroke-dasharray="5,5"></line>
+                    <line x1="700" y1="120" x2="700" y2="180" stroke="#60a5fa" stroke-width="2" stroke-dasharray="5,5"></line>
+                    
+                    <!-- Arrow marker definition -->
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6"></polygon>
+                        </marker>
+                    </defs>
+                </svg>
+            </div>
+        </section>
+        
+        <!-- סקירה כללית -->
+        <section id="overview" class="tab-content bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-blue-800 mb-6">סקירה כללית של שיטות המעבדה</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- צביעת תאים עם טריפן בלו -->
+                <div class="bg-gradient-to-b min-h-[460px] from-blue-50 to-white rounded-lg p-6 border border-blue-100 hover:shadow-md transition-shadow flex flex-col justify-between h-full">
+                    <div class="method-icon bg-blue-100 rounded-full p-3 flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M8 12h8"></path>
+                            <path d="M12 8v8"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-blue-700 mb-2">צביעת תאים עם טריפן בלו</h3>
+                    <p class="text-gray-700">שיטה לקביעת חיות תאים המבוססת על חדירת צבע לתאים מתים. התאים נספרים בהמוציטומטר לקביעת ריכוז וחיות.</p>
+                    <p class="mt-3 text-sm text-blue-600">בפרויקט: משמש לבדיקת השפעת הקרינה והטיפול בפוטוליאז על חיות התאים.</p>
+                    <button class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors w-full" onclick="switchTab('trypan-blue')">למידע נוסף</button>
+                </div>
+                
+                <!-- קביעת ריכוז DNA באמצעות ננודרופ -->
+                <div class="bg-gradient-to-b min-h-[460px] from-blue-50 to-white rounded-lg p-6 border border-blue-100 hover:shadow-md transition-shadow flex flex-col justify-between h-full">
+                    <div class="method-icon bg-blue-100 rounded-full p-3 flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10">
+                            <path d="M12 2v6"></path>
+                            <path d="M5 8h14"></path>
+                            <path d="M5 8a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4"></path>
+                            <path d="M6 16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-4H6v4z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-blue-700 mb-2">קביעת ריכוז DNA בננודרופ</h3>
+                    <p class="text-gray-700">שיטה ספקטרופוטומטרית למדידת ריכוז וטוהר DNA בנפח קטן מאוד של דגימה (1-2 מיקרוליטר).</p>
+                    <p class="mt-3 text-sm text-blue-600">בפרויקט: משמש למדידת כמות ה-DNA שהופק מהתאים לפני ואחרי הטיפולים השונים.</p>
+                    <button class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors w-full" onclick="switchTab('nanodrop')">למידע נוסף</button>
+                </div>
+                
+                <!-- דוט בלוט -->
+                <div class="bg-gradient-to-b min-h-[460px] from-blue-50 to-white rounded-lg p-6 border border-blue-100 hover:shadow-md transition-shadow flex flex-col justify-between h-full">
+                    <div class="method-icon bg-blue-100 rounded-full p-3 flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10">
+                            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                            <circle cx="15.5" cy="8.5" r="1.5"></circle>
+                            <circle cx="15.5" cy="15.5" r="1.5"></circle>
+                            <circle cx="8.5" cy="15.5" r="1.5"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-blue-700 mb-2">דוט בלוט</h3>
+                    <p class="text-gray-700">שיטה לזיהוי נוכחות של מולקולות ספציפיות (כגון נזקי DNA) באמצעות נוגדנים ייעודיים.</p>
+                    <p class="mt-3 text-sm text-blue-600">בפרויקט: משמש לזיהוי וכימות נזקי DNA ספציפיים הנגרמים על ידי קרינת UV.</p>
+                    <button class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors w-full" onclick="switchTab('dot-blot')">למידע נוסף</button>
+                </div>
+                
+                <!-- PCR -->
+                <div class="bg-gradient-to-b min-h-[460px] from-blue-50 to-white rounded-lg p-6 border border-blue-100 hover:shadow-md transition-shadow flex flex-col justify-between h-full">
+                    <div class="method-icon bg-blue-100 rounded-full p-3 flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10">
+                            <path d="M20 16.2A4.5 4.5 0 0 0 17.5 8h-1.8A7 7 0 1 0 4 14.9"></path>
+                            <path d="M12 12v9"></path>
+                            <path d="M8 17h8"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-blue-700 mb-2">PCR</h3>
+                    <p class="text-gray-700">שיטה להגברת רצפי DNA ספציפיים באמצעות תהליך מחזורי של שכפול אנזימטי.</p>
+                    <p class="mt-3 text-sm text-blue-600">בפרויקט: משמש להגברת אזורים ספציפיים ב-DNA לצורך זיהוי וכימות נזקים ותיקונם.</p>
+                    <button class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors w-full" onclick="switchTab('pcr')">למידע נוסף</button>
+                </div>
+            </div>
+            
+            <div class="mt-8 bg-blue-50 p-6 rounded-lg border border-blue-200">
+                <h3 class="text-xl font-semibold text-blue-800 mb-3">הקשר בין השיטות לפרויקט המחקר</h3>
+                <p class="mb-4">השיטות המעבדתיות הללו משתלבות יחד כדי לאפשר מחקר מקיף של פעילות הפוטוליאזות:</p>
+                
+                <ol class="space-y-3">
+                    <li class="flex">
+                        <span class="bg-blue-200 text-blue-800 font-bold rounded-full w-6 h-6 flex items-center justify-center ml-3">1</span>
+                        <div>
+                            <span class="font-medium">צביעת תאים עם טריפן בלו</span> - מאפשרת לנו לעקוב אחר השפעת הקרינה והטיפול בפוטוליאז על שרידות התאים.
+                        </div>
+                    </li>
+                    <li class="flex">
+                        <span class="bg-blue-200 text-blue-800 font-bold rounded-full w-6 h-6 flex items-center justify-center ml-3">2</span>
+                        <div>
+                            <span class="font-medium">קביעת ריכוז DNA בננודרופ</span> - מאפשרת לנו לכמת את ה-DNA שהופק מהתאים ולהבטיח שימוש בכמויות מדויקות בניסויים הבאים.
+                        </div>
+                    </li>
+                    <li class="flex">
+                        <span class="bg-blue-200 text-blue-800 font-bold rounded-full w-6 h-6 flex items-center justify-center ml-3">3</span>
+                        <div>
+                            <span class="font-medium">דוט בלוט</span> - מאפשר לנו לזהות ולכמת את נזקי ה-DNA הספציפיים שנגרמו על ידי קרינת UV ולעקוב אחר תיקונם על ידי הפוטוליאז.
+                        </div>
+                    </li>
+                    <li class="flex">
+                        <span class="bg-blue-200 text-blue-800 font-bold rounded-full w-6 h-6 flex items-center justify-center ml-3">4</span>
+                        <div>
+                            <span class="font-medium">PCR</span> - מאפשר לנו להגביר אזורים ספציפיים ב-DNA לצורך אנליזה מדויקת יותר של נזקים ותיקונם.
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+        
+        <!-- צביעת תאים עם טריפן בלו -->
+        <section id="trypan-blue" class="tab-content bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-blue-800 mb-4">צביעת תאים עם טריפן בלו וספירתם בהמוציטומטר</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-700 mb-3">עקרון השיטה</h3>
+                    <p class="mb-4">צביעת טריפן בלו היא שיטה פשוטה ומהירה לקביעת חיות תאים. העיקרון מבוסס על כך שתאים חיים בעלי ממברנה שלמה אינם מאפשרים חדירה של הצבע, בעוד שתאים מתים או פגועים מאפשרים לצבע לחדור ולצבוע את ציטופלזמת התא בכחול.</p>
+                    
+                    <p class="mb-4">המוציטומטר הוא משטח זכוכית עם רשת מדידה מדויקת המאפשר ספירת תאים וחישוב ריכוזם בתמיסה.</p>
+                    
+                    <h3 class="text-xl font-semibold text-blue-700 mb-3">חשיבות בפרויקט המחקר</h3>
+                    <p class="mb-4">בפרויקט הפוטוליאזות, שיטה זו משמשת למספר מטרות חשובות:</p>
+                    <ul class="list-disc mr-6 space-y-2">
+                        <li>קביעת מספר התאים לפני הקרנה ב-UV להבטחת אחידות בניסויים</li>
+                        <li>הערכת השפעת קרינת ה-UV על חיות התאים</li>
+                        <li>בדיקת יעילות הפוטוליאז בהגנה על התאים מפני מוות תאי הנגרם מנזקי DNA</li>
+                        <li>השוואה בין תאים שעברו תיקון באמצעות פוטוליאז לבין תאים ללא תיקון</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="bg-blue-50 p-5 rounded-lg border border-blue-100 mb-6">
+                        <h3 class="text-lg font-semibold text-blue-700 mb-3">המוציטומטר</h3>
+                        <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" class="w-full">
+                            <!-- המוציטומטר -->
+                            <rect x="50" y="50" width="200" height="100" fill="#e6e6e6" stroke="#333" stroke-width="2"></rect>
+                            
+                            <!-- רשת הספירה -->
+                            <rect x="100" y="75" width="100" height="50" fill="#f8fafc" stroke="#333" stroke-width="1"></rect>
+                            
+                            <!-- קווי רשת -->
+                            <line x1="120" y1="75" x2="120" y2="125" stroke="#666" stroke-width="0.5"></line>
+                            <line x1="140" y1="75" x2="140" y2="125" stroke="#666" stroke-width="0.5"></line>
+                            <line x1="160" y1="75" x2="160" y2="125" stroke="#666" stroke-width="0.5"></line>
+                            <line x1="180" y1="75" x2="180" y2="125" stroke="#666" stroke-width="0.5"></line>
+                            
+                            <line x1="100" y1="85" x2="200" y2="85" stroke="#666" stroke-width="0.5"></line>
+                            <line x1="100" y1="95" x2="200" y2="95" stroke="#666" stroke-width="0.5"></line>
+                            <line x1="100" y1="105" x2="200" y2="105" stroke="#666" stroke-width="0.5"></line>
+                            <line x1="100" y1="115" x2="200" y2="115" stroke="#666" stroke-width="0.5"></line>
+                            
+                            <!-- תאים -->
+                            <circle cx="110" cy="85" r="3" fill="#ffffff" stroke="#000" stroke-width="1"></circle>
+                            <circle cx="130" cy="95" r="3" fill="#3b82f6" stroke="#000" stroke-width="1"></circle>
+                            <circle cx="150" cy="105" r="3" fill="#ffffff" stroke="#000" stroke-width="1"></circle>
+                            <circle cx="170" cy="85" r="3" fill="#ffffff" stroke="#000" stroke-width="1"></circle>
+                            <circle cx="190" cy="115" r="3" fill="#3b82f6" stroke="#000" stroke-width="1"></circle>
+                            <circle cx="125" cy="115" r="3" fill="#ffffff" stroke="#000" stroke-width="1"></circle>
+                            <circle cx="145" cy="85" r="3" fill="#3b82f6" stroke="#000" stroke-width="1"></circle>
+                            <circle cx="165" cy="95" r="3" fill="#ffffff" stroke="#000" stroke-width="1"></circle>
+                            
+                            <!-- תיאורים -->
+                            <text x="150" y="40" text-anchor="middle" font-size="12" font-weight="bold">המוציטומטר</text>
+                            <text x="233" y="88" text-anchor="start" font-size="10">תא חי</text>
+                            <text x="233" y="108" text-anchor="start" font-size="10">תא מת</text>
+                            <circle cx="240" cy="85" r="3" fill="#ffffff" stroke="#000" stroke-width="1"></circle>
+                            <circle cx="240" cy="105" r="3" fill="#3b82f6" stroke="#000" stroke-width="1"></circle>
+                        </svg>
+                        <p class="text-sm text-gray-600 mt-2">איור: המוציטומטר עם רשת ספירה. תאים חיים נראים בהירים (לא צבועים) ותאים מתים צבועים בכחול.</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-blue-100 to-blue-50 p-5 rounded-lg">
+                        <h3 class="text-lg font-semibold text-blue-700 mb-2">נוסחה לחישוב ריכוז וחיות תאים</h3>
+                        <div class="bg-white p-3 rounded border border-blue-200 mb-3">
+                            <p class="font-medium">ריכוז תאים (תאים/מ"ל):</p>
+                            <p class="font-medium">מספר תאים × מקדם דילול × 10,000</p>
+                        </div>
+                        <div class="bg-white p-3 rounded border border-blue-200">
+                            <p class="font-medium">אחוז חיות:</p>
+                            <p class="font-medium">(מספר תאים חיים ÷ מספר תאים כולל) × 100%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mb-8">
+                <h3 class="text-xl font-semibold text-blue-700 mb-4">פרוטוקול העבודה</h3>
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <ol class="space-y-4">
+                        <li class="protocol-step">
+                            <p class="font-medium">הכנת תמיסת טריפן בלו 0.4% בבופר PBS.</p>
+                        </li>
+                        <li class="protocol-step">
+                            <p class="font-medium">הכנת תרחיף תאים:</p>
+                            <ul class="mr-8 mt-2 space-y-1 text-gray-700">
+                                <li>הסרת מדיום הגידול מצלחת התרבית</li>
+                                <li>שטיפת התאים עם PBS</li>
+                                <li>הוספת טריפסין והדגרה ב-37°C למשך 2-5 דקות</li>
+                                <li>הוספת מדיום גידול עם סרום לעצירת פעולת הטריפסין</li>
+                                <li>העברת התאים למבחנה וערבוב עדין</li>
+                            </ul>
+                        </li>
+                        <li class="protocol-step">
+                            <p class="font-medium">ערבוב תרחיף התאים עם טריפן בלו:</p>
+                            <ul class="mr-8 mt-2 space-y-1 text-gray-700">
+                                <li>ערבוב 10 מיקרוליטר של תרחיף תאים עם 10 מיקרוליטר של תמיסת טריפן בלו (דילול 1:1)</li>
+                                <li>הדגרה בטמפרטורת החדר למשך 1-2 דקות</li>
+                            </ul>
+                        </li>
+                        <li class="protocol-step">
+                            <p class="font-medium">טעינת התערובת להמוציטומטר:</p>
+                            <ul class="mr-8 mt-2 space-y-1 text-gray-700">
+                                <li>טעינת כ-10 מיקרוליטר מהתערובת לחריץ בהמוציטומטר</li>
+                                <li>הנחת זכוכית מכסה על המשטח</li>
+                            </ul>
+                        </li>
+                        <li class="protocol-step">
+                            <p class="font-medium">ספירת התאים במיקרוסקופ:</p>
+                            <ul class="mr-8 mt-2 space-y-1 text-gray-700">
+                                <li>ספירת התאים החיים (לא צבועים) והמתים (צבועים בכחול) בארבעת הריבועים הגדולים בפינות רשת הספירה</li>
+                                <li>חישוב ממוצע התאים לריבוע גדול</li>
+                            </ul>
+                        </li>
+                        <li class="protocol-step">
+                            <p class="font-medium">חישוב ריכוז וחיות התאים:</p>
+                            <ul class="mr-8 mt-2 space-y-1 text-gray-700">
+                                <li>ריכוז תאים = ממוצע תאים לריבוע × מקדם דילול (2) × 10,000 תאים/מ"ל</li>
+                                <li>אחוז חיות = (מספר תאים חיים ÷ מספר תאים כולל) × 100%</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold text-blue-700 mb-3">יישום בפרויקט הפוטוליאזות</h3>
+                <div class="bg-blue-50 p-5 rounded-lg border border-blue-100">
+                    <p class="mb-4">בפרויקט המחקר שלנו, אנו משתמשים בשיטת צביעת טריפן בלו כדי:</p>
+                    <ol class="list-decimal mr-6 space-y-2">
+                        <li>לקבוע את מספר התאים מסוג RO12XP לפני הקרנה ב-UV, כדי להבטיח שכל הניסויים מתחילים עם מספר תאים זהה.</li>
+                        <li>להעריך את השפעת קרינת ה-UV על חיות התאים, על ידי השוואת אחוזי החיות לפני ואחרי הקרנה.</li>
+                        <li>לבדוק את יעילות הפוטוליאז בהגנה על התאים, על ידי השוואת חיות התאים בין קבוצות שנחשפו לאור כחול (להפעלת הפוטוליאז) לבין קבוצות ביקורת.</li>
+                        <li>לעקוב אחר שרידות התאים לאורך זמן לאחר הטיפולים השונים, כדי להעריך את ההשפעה ארוכת הטווח של תיקון ה-DNA על ידי פוטוליאז.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-xl font-semibold text-blue-700 mb-3">חידון: צביעת תאים עם טריפן בלו</h3>
+                <button id="trypan-quiz-btn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">פתח חידון</button>
+                
+                <div id="trypan-quiz" class="quiz-container mt-4 bg-gray-50 rounded-lg border border-gray-200 p-6">
+                    <form id="trypan-quiz-form">
+                        <div class="mb-6">
+                            <p class="font-medium mb-3">1. מדוע תאים מתים נצבעים בטריפן בלו בעוד תאים חיים לא?</p>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="q1" value="a" class="ml-2">
+                                    <span>תאים מתים מייצרים אנזים המפעיל את הצבע</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q1" value="b" class="ml-2">
+                                    <span>תאים חיים מפרקים את הצבע באופן אקטיבי</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q1" value="c" class="ml-2">
+                                    <span>ממברנת התא בתאים מתים פגועה ומאפשרת חדירת הצבע</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q1" value="d" class="ml-2">
+                                    <span>הצבע נקשר לחלבונים המתבטאים רק בתאים מתים</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <p class="font-medium mb-3">2. מהו המקדם שבו משתמשים לחישוב ריכוז תאים בהמוציטומטר?</p>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="q2" value="a" class="ml-2">
+                                    <span>1,000</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q2" value="b" class="ml-2">
+                                    <span>10,000</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q2" value="c" class="ml-2">
+                                    <span>100,000</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q2" value="d" class="ml-2">
+                                    <span>1,000,000</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <p class="font-medium mb-3">3. בפרויקט הפוטוליאזות, מדוע חשוב לבדוק את חיות התאים לאחר הקרנה ב-UV?</p>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="q3" value="a" class="ml-2">
+                                    <span>כדי לוודא שהתאים לא התרבו יותר מדי</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q3" value="b" class="ml-2">
+                                    <span>כדי להעריך את מידת הנזק שנגרם לתאים על ידי הקרינה</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q3" value="c" class="ml-2">
+                                    <span>כדי לבדוק אם התאים עברו מוטציה</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q3" value="d" class="ml-2">
+                                    <span>כדי לוודא שהתאים לא שינו את צורתם</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <p class="font-medium mb-3">4. אם ספרת 150 תאים חיים ו-50 תאים מתים בארבעת הריבועים הגדולים של ההמוציטומטר, מהו אחוז חיות התאים?</p>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="q4" value="a" class="ml-2">
+                                    <span>50%</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q4" value="b" class="ml-2">
+                                    <span>66.7%</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q4" value="c" class="ml-2">
+                                    <span>75%</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q4" value="d" class="ml-2">
+                                    <span>80%</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <p class="font-medium mb-3">5. איזו מהפעולות הבאות אינה חלק מפרוטוקול צביעת תאים בטריפן בלו?</p>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="q5" value="a" class="ml-2">
+                                    <span>ערבוב תרחיף תאים עם תמיסת טריפן בלו</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q5" value="b" class="ml-2">
+                                    <span>הדגרת התאים עם הצבע למשך 24 שעות</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q5" value="c" class="ml-2">
+                                    <span>טעינת התערובת להמוציטומטר</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q5" value="d" class="ml-2">
+                                    <span>ספירת התאים החיים והמתים במיקרוסקופ</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">בדוק תשובות</button>
+                    </form>
+                    
+                    <div id="trypan-quiz-results" class="mt-6 hidden">
+                        <h4 class="text-lg font-semibold mb-3">תוצאות:</h4>
+                        <p id="trypan-score" class="text-xl font-bold mb-3"></p>
+                        <div id="trypan-feedback" class="space-y-2"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- קביעת ריכוז DNA באמצעות ננודרופ -->
+        <section id="nanodrop" class="tab-content bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-blue-800 mb-4">קביעת ריכוז DNA באמצעות ננודרופ</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-700 mb-3">עקרון השיטה</h3>
+                    <p class="mb-4">ננודרופ הוא ספקטרופוטומטר מיקרו-נפח המאפשר מדידת ריכוז וטוהר של חומצות גרעין (DNA ו-RNA) וחלבונים בנפח קטן מאוד של דגימה (1-2 מיקרוליטר).</p>
+                    
+                    <p class="mb-4">העיקרון מבוסס על בליעת אור אולטרה-סגול על ידי חומצות גרעין באורך גל של 260 ננומטר. ככל שריכוז ה-DNA גבוה יותר, כך הבליעה גבוהה יותר.</p>
+                    
+                    <p class="mb-4">המכשיר מודד גם את הבליעה באורך גל של 280 ננומטר (בליעה אופיינית לחלבונים) ומחשב את היחס A260/A280, המשמש כמדד לטוהר ה-DNA. יחס של כ-1.8 נחשב ל-DNA טהור.</p>
+                    
+                    <h3 class="text-xl font-semibold text-blue-700 mb-3">חשיבות בפרויקט המחקר</h3>
+                    <p class="mb-4">בפרויקט הפוטוליאזות, מדידת ריכוז DNA בננודרופ חיונית למספר היבטים:</p>
+                    <ul class="list-disc mr-6 space-y-2">
+                        <li>קביעת כמות ה-DNA שהופקה מהתאים לפני ואחרי טיפולים שונים</li>
+                        <li>הבטחת שימוש בכמויות מדויקות ואחידות של DNA בניסויי המשך כמו PCR ודוט בלוט</li>
+                        <li>הערכת טוהר ה-DNA המופק, להבטחת תוצאות אמינות</li>
+                        <li>השוואה כמותית של רמות DNA בין קבוצות ניסוי שונות</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="bg-blue-50 p-5 rounded-lg border border-blue-100 mb-6">
+                        <h3 class="text-lg font-semibold text-blue-700 mb-3">מכשיר הננודרופ</h3>
+                        <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" class="w-full">
+                            <!-- בסיס המכשיר -->
+                            <rect x="50" y="120" width="200" height="40" rx="5" fill="#e6e6e6" stroke="#333" stroke-width="2"></rect>
+                            
+                            <!-- גוף המכשיר -->
+                            <rect x="80" y="60" width="140" height="60" rx="5" fill="#f8fafc" stroke="#333" stroke-width="2"></rect>
+                            
+                            <!-- משטח המדידה -->
+                            <circle cx="150" cy="80" r="10" fill="#3b82f6" stroke="#333" stroke-width="1"></circle>
+                            
+                            <!-- זרוע עליונה -->
+                            <rect x="140" y="30" width="20" height="30" rx="2" fill="#e6e6e6" stroke="#333" stroke-width="2"></rect>
+                            
+                            <!-- מסך -->
+                            <rect x="90" y="70" width="40" height="20" rx="2" fill="#333" stroke="#000" stroke-width="1"></rect>
+                            <text x="110" y="84" text-anchor="middle" font-size="8" fill="white">260/280</text>
+                            <text x="110" y="92" text-anchor="middle" font-size="8" fill="#4ade80">1.82</text>
+                            
+                            <!-- כפתורים -->
+                            <circle cx="190" cy="75" r="5" fill="#ef4444" stroke="#333" stroke-width="1"></circle>
+                            <circle cx="190" cy="90" r="5" fill="#22c55e" stroke="#333" stroke-width="1"></circle>
+                            
+                            <!-- תיאורים -->
+                            <text x="150" y="20" text-anchor="middle" font-size="12" font-weight="bold">מכשיר ננודרופ</text>
+                            <text x="150" cy="100" text-anchor="middle" font-size="8">משטח מדידה</text>
+                            <line x1="150" y1="95" x2="150" y2="105" stroke="#666" stroke-width="1"></line>
+                        </svg>
+                        <p class="text-sm text-gray-600 mt-2">איור: מכשיר ננודרופ. טיפת דגימה קטנה (1-2 מיקרוליטר) מונחת על משטח המדידה, והמכשיר מודד את בליעת האור דרכה.</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-blue-100 to-blue-50 p-5 rounded-lg">
+                        <h3 class="text-lg font-semibold text-blue-700 mb-2">פרשנות תוצאות ננודרופ</h3>
+                        <div class="bg-white p-3 rounded border border-blue-200 mb-3">
+                            <p class="font-medium">ריכוז DNA:</p>
+                            <p>בליעה באורך גל 260 ננומטר × מקדם דילול × 50 = ריכוז DNA (ng/µl)</p>
+                        </div>
+                        <div class="bg-white p-3 rounded border border-blue-200 mb-3">
+                            <p class="font-medium">יחס A260/A280:</p>
+                            <ul class="list-disc mr-6 mt-2 space-y-1 text-sm">
+                                <li>~1.8: DNA טהור</li>
+                                <li>~2.0: RNA טהור</li>
+                                <li>&lt;1.7: זיהום בחלבונים או פנול</li>
+                                <li>&gt;2.0: זיהום ב-RNA או הידרוליזה של DNA</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-3 rounded border border-blue-200">
+                            <p class="font-medium">יחס A260/A230:</p>
+                            <p>יחס של 2.0-2.2 מעיד על טוהר גבוה. יחס נמוך מעיד על זיהום בחומרים אורגניים או מלחים.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mb-8">
+                <h3 class="text-xl font-semibold text-blue-700 mb-4">פרוטוקול העבודה</h3>
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <ol class="space-y-4">
+                        <li class="protocol-step">
+                            <p class="font-medium">הכנת המכשיר:</p>
+                            <ul class="mr-8 mt-2 space-y-1 text-gray-700">
+                                <li>הדלקת מכשיר הננודרופ והמחשב המחובר אליו</li>
+                                <li>פתיחת תוכנת הננודרופ ובחירת אפליקציית מדידת חומצות גרעין</li>
+                            </ul>
+                        </li>
+                        <li class="protocol-step">
+                            <p class="font-medium">כיול המכשיר (Blank):</p>
+                            <ul class="mr-8 mt-2 space-y-1 text-gray-700">
+                                <li>ניקוי משטחי המדידה העליון והתחתון עם מים מזוקקים ונייר מתאים</li>
+                                <li>טעינת 1-2 מיקרוליטר של בופר האחסון של ה-DNA (לרוב מים או TE buffer) על משטח המדידה התחתון</li>
+                                <li>הורדת זרוע המדידה העליונה ולחיצה על "Blank" בתוכנה</li>
+                            </ul>
+                        </li>
+                        <li class="protocol-step">
+                            <p class="font-medium">מדידת הדגימות:</p>
+                            <ul class="mr-8 mt-2 space-y-1 text-gray-700">
+                                <li>ניקוי משטחי המדידה עם מים מזוקקים ונייר מתאים</li>
+                                <li>טעינת 1-2 מיקרוליטר של דגימת ה-DNA על משטח המדידה התחתון</li>
+                                <li>הורדת זרוע המדידה העליונה ולחיצה על "Measure" בתוכנה</li>
+                                <li>רישום התוצאות: ריכוז ה-DNA (ng/µl) והיחסים A260/A280 ו-A260/A230</li>
+                            </ul>
+                        </li>
+                        <li class="protocol-step">
+                            <p class="font-medium">חזרה על המדידה לדגימות נוספות:</p>
+                            <ul class="mr-8 mt-2 space-y-1 text-gray-700">
+                                <li>ניקוי משטחי המדידה בין דגימות</li>
+                                <li>חזרה על שלב 3 עבור כל דגימה</li>
+                            </ul>
+                        </li>
+                        <li class="protocol-step">
+                            <p class="font-medium">סיום העבודה:</p>
+                            <ul class="mr-8 mt-2 space-y-1 text-gray-700">
+                                <li>ניקוי משטחי המדידה בסיום העבודה</li>
+                                <li>שמירת התוצאות וייצוא הנתונים במידת הצורך</li>
+                                <li>כיבוי המכשיר והתוכנה</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold text-blue-700 mb-3">יישום בפרויקט הפוטוליאזות</h3>
+                <div class="bg-blue-50 p-5 rounded-lg border border-blue-100">
+                    <p class="mb-4">בפרויקט המחקר שלנו, אנו משתמשים בננודרופ למספר מטרות חשובות:</p>
+                    <ol class="list-decimal mr-6 space-y-2">
+                        <li>מדידת ריכוז ה-DNA שהופק מתאי RO12XP לפני הקרנה ב-UV, כדי לקבוע נקודת התחלה לניסוי.</li>
+                        <li>מדידת ריכוז ה-DNA לאחר הקרנה ב-UV, כדי לבחון אם יש שינוי בכמות ה-DNA הניתן להפקה (עקב נזקים נרחבים).</li>
+                        <li>מדידת ריכוז ה-DNA לאחר חשיפה לאור כחול (להפעלת הפוטוליאז), כדי לבחון אם תיקון הנזקים משפיע על כמות ה-DNA הניתן להפקה.</li>
+                        <li>הבטחת שימוש בכמויות זהות של DNA בניסויי המשך כמו PCR ודוט בלוט, כדי לאפשר השוואה מדויקת בין הקבוצות השונות.</li>
+                        <li>בדיקת טוהר ה-DNA המופק (יחס A260/A280), כדי לוודא שאין זיהומים שעלולים להשפיע על תוצאות הניסויים.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-xl font-semibold text-blue-700 mb-3">חידון: קביעת ריכוז DNA באמצעות ננודרופ</h3>
+                <button id="nanodrop-quiz-btn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">פתח חידון</button>
+                
+                <div id="nanodrop-quiz" class="quiz-container mt-4 bg-gray-50 rounded-lg border border-gray-200 p-6">
+                    <form id="nanodrop-quiz-form">
+                        <div class="mb-6">
+                            <p class="font-medium mb-3">1. באיזה אורך גל נמדדת בליעת האור על ידי DNA בננודרופ?</p>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="q1" value="a" class="ml-2">
+                                    <span>230 ננומטר</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q1" value="b" class="ml-2">
+                                    <span>260 ננומטר</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q1" value="c" class="ml-2">
+                                    <span>280 ננומטר</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q1" value="d" class="ml-2">
+                                    <span>320 ננומטר</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <p class="font-medium mb-3">2. מהו היחס A260/A280 האופייני ל-DNA טהור?</p>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="q2" value="a" class="ml-2">
+                                    <span>1.0</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q2" value="b" class="ml-2">
+                                    <span>1.4</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q2" value="c" class="ml-2">
+                                    <span>1.8</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q2" value="d" class="ml-2">
+                                    <span>2.2</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <p class="font-medium mb-3">3. מהו היתרון העיקרי של שימוש בננודרופ לעומת ספקטרופוטומטרים מסורתיים?</p>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="q3" value="a" class="ml-2">
+                                    <span>דיוק גבוה יותר במדידה</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q3" value="b" class="ml-2">
+                                    <span>שימוש בנפח קטן מאוד של דגימה (1-2 מיקרוליטר)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q3" value="c" class="ml-2">
+                                    <span>יכולת לזהות רצפים ספציפיים של DNA</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q3" value="d" class="ml-2">
+                                    <span>מהירות מדידה גבוהה יותר</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <p class="font-medium mb-3">4. אם מדדת בליעה של 0.5 באורך גל 260 ננומטר, מהו ריכוז ה-DNA בדגימה (בהנחה שאין דילול)?</p>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="q4" value="a" class="ml-2">
+                                    <span>5 ng/µl</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q4" value="b" class="ml-2">
+                                    <span>25 ng/µl</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q4" value="c" class="ml-2">
+                                    <span>50 ng/µl</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q4" value="d" class="ml-2">
+                                    <span>250 ng/µl</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <p class="font-medium mb-3">5. מדוע חשוב למדוד את ריכוז ה-DNA בפרויקט הפוטוליאזות?</p>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="q5" value="a" class="ml-2">
+                                    <span>כדי לחסוך בחומרים יקרים</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q5" value="b" class="ml-2">
+                                    <span>כדי להבטיח שימוש בכמויות זהות של DNA בניסויי המשך</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q5" value="c" class="ml-2">
+                                    <span>כדי לקבוע את גודל הפוטוליאז</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="q5" value="d" class="ml-2">
+                                    <span>כדי לבדוק אם התאים מתרבים</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">בדוק תשובות</button>
+                    </form>
+                    
+                    <div id="nanodrop-quiz-results" class="mt-6 hidden">
+                        <h4 class="text-lg font-semibold mb-3">תוצאות:</h4>
+                        <p id="nanodrop-score" class="text-xl font-bold mb-3"></p>
+                        <div id="nanodrop-feedback" class="space-y-2"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- דוט בלוט -->
+        <section id="dot-blot" class="tab-content bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-blue-800 mb-4">דוט בלוט</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-700 mb-3">עקרון השיטה</h3>
+                    <p class="mb-4">דוט בלוט היא שיטה אימונולוגית המשמשת לזיהוי וכימות של מולקולות ספציפיות בדגימה ביולוגית. בניגוד לווסטרן בלוט, בדוט בלוט הדגימות מונחות ישירות על ממברנה ללא הפרדה אלקטרופורטית קודמת.</p>
+                    
+                    <p class="mb-4">העיקרון מבוסס על קישור ספציפי של נוגדנים למולקולות המטרה (אנטיגנים) וזיהוי הקישור באמצעות מערכת גילוי כגון אנזים המייצר תוצר צבעוני או פלואורסצנטי.</p>
+                    
+                    <p class="mb-4">בפרויקט הפוטוליאזות, דוט בלוט משמש לזיהוי וכימות של נזקי DNA ספציפיים הנגרמים על ידי קרינת UV, כגון דימרים של פירימידין (CPDs) ו-6-4 פוטופרודוקטים (6-4PPs).</p>
+                    
+                    <h3 class="text-xl font-semibold text-blue-700 mb-3">חשיבות בפרויקט המחקר</h3>
+                    <p class="mb-4">בפרויקט המחקר שלנו, דוט בלוט מהווה כלי חיוני:</p>
+                    <ul class="list-disc mr-6 space-y-2">
+                        <li>זיהוי וכימות של נזקי DNA ספציפיים הנגרמים על ידי קרינת UV</li>
+                        <li>מעקב אחר תיקון הנזקים על ידי פוטוליאז לאחר חשיפה לאור כחול</li>
+                        <li>השוואה בין יעילות התיקון בתנאים שונים</li>
+                        <li>הערכת הספציפיות של פוטוליאז לסוגים שונים של נזקי DNA</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="bg-blue-50 p-5 rounded-lg border border-blue-100 mb-6">
+                        <h3 class="text-lg font-semibold text-blue-700 mb-3">עקרון שיטת הדוט בלוט</h3>
+                        <img src="./DOT BLOT.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-xl font-semibold text-blue-700 mb-3">חידון: דוט בלוט</h3>
+                <button id="dotblot-quiz-btn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">פתח חידון</button>
+
+                <div id="dotblot-quiz" class="quiz-container mt-4 bg-gray-50 rounded-lg border border-gray-200 p-6">
+                    <form id="dotblot-quiz-form">
+                        <div class="mb-6">
+                            <p class="font-medium mb-3">1. מהו היתרון של שיטת דוט בלוט על פני ווסטרן בלוט?</p>
+                            <div class="space-y-2">
+                                <label class="flex items-center"><input type="radio" name="q1" value="a" class="ml-2">אין צורך בהרצת ג'ל להפרדת חלבונים</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="b" class="ml-2">מדויקת יותר בכל תנאי</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="c" class="ml-2">מתאימה רק לזיהוי RNA</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="d" class="ml-2">מבוססת על PCR</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <p class="font-medium mb-3">2. כיצד מתבצע הזיהוי בשיטת דוט בלוט?</p>
+                            <div class="space-y-2">
+                                <label class="flex items-center"><input type="radio" name="q2" value="a" class="ml-2">שימוש בחומר רדיואקטיבי לזיהוי</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="b" class="ml-2">קישור נוגדן ספציפי לאנטיגן וגילויו בצבע או פלואורסצנציה</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="c" class="ml-2">בדיקה מיקרוסקופית ישירה</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="d" class="ml-2">המרת מולקולה לאור</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <p class="font-medium mb-3">3. מהו תפקיד שיטת דוט בלוט בפרויקט הפוטוליאזות?</p>
+                            <div class="space-y-2">
+                                <label class="flex items-center"><input type="radio" name="q3" value="a" class="ml-2">הפקת DNA מהתאים</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="b" class="ml-2">הדמיה של קרינת UV</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="c" class="ml-2">זיהוי וכימות של נזקי DNA</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="d" class="ml-2">בדיקת תנועת תאים</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <p class="font-medium mb-3">4. מהם CPD ו-6-4PP?</p>
+                            <div class="space-y-2">
+                                <label class="flex items-center"><input type="radio" name="q4" value="a" class="ml-2">אנזימים מתקני DNA</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="b" class="ml-2">שמות של נוגדנים</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="c" class="ml-2">סוגים של נזקי DNA כתוצאה מקרינת UV</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="d" class="ml-2">שיטות הפרדת חלבונים</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <p class="font-medium mb-3">5. מדוע חשוב לבצע דוט בלוט לאחר חשיפת התאים לאור כחול?</p>
+                            <div class="space-y-2">
+                                <label class="flex items-center"><input type="radio" name="q5" value="a" class="ml-2">כדי למדוד את ריכוז ה-DNA</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="b" class="ml-2">כדי לזהות האם הפוטוליאז תיקן את נזקי ה-DNA</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="c" class="ml-2">כדי למדוד את חיות התאים</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="d" class="ml-2">כדי לספור תאים חיים ומתים</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">בדוק תשובות</button>
+                    </form>
+
+                    <div id="dotblot-quiz-results" class="mt-6 hidden">
+                        <h4 class="text-lg font-semibold mb-3">תוצאות:</h4>
+                        <p id="dotblot-score" class="text-xl font-bold mb-3"></p>
+                        <div id="dotblot-feedback" class="space-y-2"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+       
+        <!-- pcr -->
+        <section id="pcr" class="tab-content bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-blue-800 mb-4">PCR – הגברת רצפי DNA</h2>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-6">
+                <div>
+                <h3 class="text-xl font-semibold text-blue-700 mb-3">עקרון השיטה</h3>
+                <p class="mb-4">
+                    PCR (Polymerase Chain Reaction) היא שיטה להגברת רצפי DNA מסוימים בעזרת אנזים DNA פולימראז.
+                    התהליך כולל שלושה שלבים מחזוריים:
+                </p>
+                <ul class="list-disc mr-6 space-y-2 text-gray-700 mb-4">
+                    <li><strong>דנטורציה:</strong> הפרדת גדילי ה-DNA (ב-94–95°C)</li>
+                    <li><strong>אנילינג:</strong> קישור פריימרים לגדילים (ב-50–65°C)</li>
+                    <li><strong>אלונגציה:</strong> סינתזה של גדיל חדש ע"י הפולימראז (ב-72°C)</li>
+                </ul>
+                <p>
+                    התהליך חוזר על עצמו כ-30–35 פעמים ומביא להגברה אקספוננציאלית של הרצף הרצוי.
+                </p>
+                </div>
+
+                <div>
+                <h3 class="text-xl font-semibold text-blue-700 mb-3">חשיבות בפרויקט הפוטוליאזות</h3>
+                <ul class="list-disc mr-6 space-y-2 text-gray-700">
+                    <li>מאפשר זיהוי רגיש של נזקי DNA ספציפיים</li>
+                    <li>מאפשר לבדוק האם פוטוליאז תיקן את הנזק הגנטי</li>
+                    <li>מאפשר כימות של מקטעי DNA לפני ואחרי טיפול</li>
+                    <li>תומך בתוצאה של שיטות נוספות כמו דוט בלוט</li>
+                </ul>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 p-5 rounded-lg border border-blue-100 mb-6">
+                <h3 class="text-lg font-semibold text-blue-700 mb-3">אנימציה של PCR</h3>
+                
+                    <iframe class="embed-responsive-item" width="1024" height="768" style="margin: 0 auto;" src="https://content.dnalc.org/content/c17/17044/pcr-canvas-720.html" frameborder="0" allowfullscreen=""></iframe>
+                 
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold text-blue-700 mb-3">פרוטוקול העבודה</h3>
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                <ol class="space-y-4">
+                    <li class="protocol-step"><p class="font-medium">הכנת תערובת PCR:</p>
+                    <ul class="mr-8 mt-2 space-y-1 text-gray-700">
+                        <li>תבנית DNA</li>
+                        <li>2 פריימרים (קדמי ואחורי)</li>
+                        <li>dNTPs</li>
+                        <li>בופר PCR</li>
+                        <li>אנזים Taq פולימראז</li>
+                        <li>מים נטולי DNA</li>
+                    </ul>
+                    </li>
+                    <li class="protocol-step"><p class="font-medium">הרצת PCR בתרמוציקלר:</p>
+                    <ul class="mr-8 mt-2 space-y-1 text-gray-700">
+                        <li>Denaturation: 95°C ל-30 שניות</li>
+                        <li>Annealing: טמפ' מתאימה לפריימר (לרוב 55–60°C) ל-30 שניות</li>
+                        <li>Extension: 72°C ל-30–60 שניות (בהתאם לאורך המקטע)</li>
+                        <li>חזרה על המחזור 30–35 פעמים</li>
+                    </ul>
+                    </li>
+                    <li class="protocol-step"><p class="font-medium">אימות התוצאה:</p>
+                    <ul class="mr-8 mt-2 space-y-1 text-gray-700">
+                        <li>הרצת ג'ל אלקטרופורזה (agarose gel)</li>
+                        <li>השוואת גודל המקטע מול סולם DNA</li>
+                    </ul>
+                    </li>
+                </ol>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-xl font-semibold text-blue-700 mb-3">חידון: שיטת PCR</h3>
+                <button id="pcr-quiz-btn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">פתח חידון</button>
+
+                <div id="pcr-quiz" class="quiz-container mt-4 bg-gray-50 rounded-lg border border-gray-200 p-6">
+                <form id="pcr-quiz-form">
+                    <div class="mb-6">
+                    <p class="font-medium mb-3">1. מהו התפקיד של אנזים Taq פולימראז ב-PCR?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center"><input type="radio" name="q1" class="ml-2">משכפל את גדיל ה-DNA</label>
+                        <label class="flex items-center"><input type="radio" name="q1" class="ml-2">מפריד בין הפריימרים</label>
+                        <label class="flex items-center"><input type="radio" name="q1" class="ml-2">חודר לגרעין התא</label>
+                        <label class="flex items-center"><input type="radio" name="q1" class="ml-2">יוצר גשר בין רצפים</label>
+                    </div>
+                    </div>
+
+                    <div class="mb-6">
+                    <p class="font-medium mb-3">2. באיזו טמפרטורה מתרחש שלב האנילינג?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center"><input type="radio" name="q2" class="ml-2">94°C</label>
+                        <label class="flex items-center"><input type="radio" name="q2" class="ml-2">72°C</label>
+                        <label class="flex items-center"><input type="radio" name="q2" class="ml-2">50–65°C</label>
+                        <label class="flex items-center"><input type="radio" name="q2" class="ml-2">37°C</label>
+                    </div>
+                    </div>
+
+                    <div class="mb-6">
+                    <p class="font-medium mb-3">3. מה מטרת השלב של הגברת ה-DNA?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center"><input type="radio" name="q3" class="ml-2">לקבל כמויות קטנות לצפייה במיקרוסקופ</label>
+                        <label class="flex items-center"><input type="radio" name="q3" class="ml-2">להפוך RNA ל-DNA</label>
+                        <label class="flex items-center"><input type="radio" name="q3" class="ml-2">לקבל כמויות גדולות לניתוח</label>
+                        <label class="flex items-center"><input type="radio" name="q3" class="ml-2">להרוס את ה-DNA הפגום</label>
+                    </div>
+                    </div>
+
+                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">בדוק תשובות</button>
+                </form>
+                <div id="pcr-quiz-results" class="mt-6 hidden">
+                    <h4 class="text-lg font-semibold mb-3">תוצאות:</h4>
+                    <p id="pcr-score" class="text-xl font-bold mb-3"></p>
+                    <div id="pcr-feedback" class="space-y-2"></div>
+                </div>
+                </div>
+            </div>
+        </section>
+</main>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tabButtons = document.querySelectorAll("[data-tab]");
+        const tabContents = document.querySelectorAll(".tab-content");
+
+        tabButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const targetTab = button.getAttribute("data-tab");
+
+                // הסרת active מכל התוכן
+                tabContents.forEach(section => {
+                    section.classList.remove("active");
+                });
+
+                // הוספת active לתוכן המתאים
+                const targetSection = document.getElementById(targetTab);
+                if (targetSection) {
+                    targetSection.classList.add("active");
+                }
+
+                // עדכון עיצוב הכפתורים
+                tabButtons.forEach(btn => {
+                    btn.classList.remove("text-blue-600", "border-blue-600");
+                    btn.classList.add("text-gray-500", "border-transparent");
+                });
+
+                button.classList.add("text-blue-600", "border-blue-600");
+                button.classList.remove("text-gray-500", "border-transparent");
+            });
+        });
+    });
+</script>
+<script>
+    // פתיחת חידונים בלחיצה
+    document.addEventListener("DOMContentLoaded", function () {
+        const quizButtons = [
+            { buttonId: "trypan-quiz-btn", quizId: "trypan-quiz" },
+            { buttonId: "nanodrop-quiz-btn", quizId: "nanodrop-quiz" },
+            { buttonId: "pcr-quiz-btn", quizId: "pcr-quiz" },
+            { buttonId: "dotblot-quiz-btn", quizId: "dotblot-quiz" }
+        ];
+
+        quizButtons.forEach(({ buttonId, quizId }) => {
+            const button = document.getElementById(buttonId);
+            const quiz = document.getElementById(quizId);
+
+            if (button && quiz) {
+                quiz.classList.remove("active"); // הסתרה כברירת מחדל
+
+                button.addEventListener("click", () => {
+                    quiz.classList.toggle("active");
+                });
+            }
+        });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const correctAnswersTrypan = {
+            "q1": "c",
+            "q2": "b",
+            "q3": "b",
+            "q4": "c",
+            "q5": "b"
+        };
+    
+        handleQuizForm("trypan-quiz-form", "trypan-quiz-results", "trypan-score", "trypan-feedback", correctAnswersTrypan);
+    });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const correctAnswersNanodrop = {
+                "q1": "b",
+                "q2": "c",
+                "q3": "b",
+                "q4": "c",
+                "q5": "b"
+            };
+        
+            handleQuizForm("nanodrop-quiz-form", "nanodrop-quiz-results", "nanodrop-score", "nanodrop-feedback", correctAnswersNanodrop);
+        });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const correctAnswersPCR = {
+            "q1": "משכפל את גדיל ה-DNA",
+            "q2": "50–65°C",
+            "q3": "לקבל כמויות גדולות לניתוח"
+        };
+    
+        handleQuizForm("pcr-quiz-form", "pcr-quiz-results", "pcr-score", "pcr-feedback", correctAnswersPCR, true);
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const correctAnswersDotBlot = {
+        "q1": "a",
+        "q2": "b",
+        "q3": "c",
+        "q4": "c",
+        "q5": "b"
+    };
+
+    handleQuizForm("dotblot-quiz-form", "dotblot-quiz-results", "dotblot-score", "dotblot-feedback", correctAnswersDotBlot);
+});
+
+</script>
+<script>
+    function handleQuizForm(formId, resultsId, scoreId, feedbackId, correctAnswers, compareText = false) {
+        const form = document.getElementById(formId);
+        const resultsContainer = document.getElementById(resultsId);
+        const scoreDisplay = document.getElementById(scoreId);
+        const feedbackContainer = document.getElementById(feedbackId);
+    
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            let score = 0;
+            feedbackContainer.innerHTML = "";
+    
+            Object.keys(correctAnswers).forEach(q => {
+                const selected = form.querySelector(`input[name="${q}"]:checked`);
+                const correct = correctAnswers[q];
+                const questionBlock = form.querySelector(`input[name="${q}"]`).closest('.mb-6');
+                const questionText = questionBlock.querySelector("p").innerText;
+    
+                const feedback = document.createElement("div");
+                feedback.classList.add("p-3", "rounded", "text-sm");
+    
+                if (selected) {
+                    const selectedText = selected.nextElementSibling.innerText.trim();
+                    const correctText = compareText ? correct : form.querySelector(`input[name="${q}"][value="${correct}"]`)?.nextElementSibling?.innerText?.trim();
+    
+                    const isCorrect = compareText
+                        ? selectedText === correct
+                        : selected.value === correct;
+    
+                    if (isCorrect) {
+                        score++;
+                        feedback.classList.add("bg-green-100", "text-green-800", "border", "border-green-300");
+                        feedback.innerHTML = `✔️ <strong>${questionText}</strong><br> תשובתך נכונה.`;
+                    } else {
+                        feedback.classList.add("bg-red-100", "text-red-800", "border", "border-red-300");
+                        feedback.innerHTML = `❌ <strong>${questionText}</strong><br> תשובתך שגויה. <br>התשובה הנכונה: <strong>${correctText}</strong>`;
+                    }
+                } else {
+                    const correctText = compareText ? correct : form.querySelector(`input[name="${q}"][value="${correct}"]`)?.nextElementSibling?.innerText?.trim();
+                    feedback.classList.add("bg-red-100", "text-red-800", "border", "border-red-300");
+                    feedback.innerHTML = `⚠️ <strong>${questionText}</strong><br> לא סומנה תשובה. <br>התשובה הנכונה: <strong>${correctText}</strong>`;
+                }
+    
+                feedbackContainer.appendChild(feedback);
+            });
+    
+            scoreDisplay.textContent = `ניקוד: ${score} מתוך ${Object.keys(correctAnswers).length}`;
+            resultsContainer.classList.remove("hidden");
+            resultsContainer.scrollIntoView({ behavior: "smooth" });
+        });
+    }
+    </script>
+    <script>
+        function switchTab(tabId) {
+            const tabButtons = document.querySelectorAll("[data-tab]");
+            const tabContents = document.querySelectorAll(".tab-content");
+    
+            // הסרת כל הטאבים הפעילים
+            tabContents.forEach(section => section.classList.remove("active"));
+            tabButtons.forEach(button => {
+                button.classList.remove("text-blue-600", "border-blue-600");
+                button.classList.add("text-gray-500", "border-transparent");
+            });
+    
+            // הצגת הטאב המתאים
+            const targetSection = document.getElementById(tabId);
+            if (targetSection) {
+                targetSection.classList.add("active");
+            }
+    
+            const targetButton = Array.from(tabButtons).find(btn => btn.getAttribute("data-tab") === tabId);
+            if (targetButton) {
+                targetButton.classList.add("text-blue-600", "border-blue-600");
+                targetButton.classList.remove("text-gray-500", "border-transparent");
+            }
+    
+            // גלילה אל הטאב החדש (אופציונלי)
+            targetSection?.scrollIntoView({ behavior: "smooth" });
+        }
+    </script>
+                
+
+</body></html>
